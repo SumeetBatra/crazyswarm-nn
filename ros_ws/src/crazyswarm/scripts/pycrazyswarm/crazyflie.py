@@ -53,6 +53,7 @@ class Crazyflie:
         # self.startTrajectoryService = rospy.ServiceProxy(prefix + "/start_trajectory", StartTrajectory)
         rospy.wait_for_service(prefix + "/update_params")
         self.updateParamsService = rospy.ServiceProxy(prefix + "/update_params", UpdateParams)
+        self.prefix = prefix
 
     def setGroupMask(self, groupMask):
         self.setGroupMaskService(groupMask)

@@ -7,6 +7,32 @@ crazyflieTypes:
     dynamicsConfiguration: 0
     firmwareParams:
       ctrlMel:
+        kp_xy: 0.5 #0.6 # p for position
+        kd_xy: 0.3 # 0.35 # d for position
+        ki_xy: 0.0 #0.05
+        i_range_xy: 2.0
+        kR_xy: 20000 #70000 # p for attitude
+        kw_xy: 6000 #20000 # d for attitude
+        kR_z: 60000 # 70000 # p for yaw
+        kw_z: 12000 # 30000  # d for yaw
+        ki_m_z: 0.0 #500 #0 #20000     # i for yaw
+        ki_m_xy: 0.0
+        i_range_m_z: 1500 # i range for yaw
+        kd_omega_rp: 0 #200 # roll and pitch angular velocity d gain
+        kp_z: 1.25
+        kd_z: 0.4
+        ki_z: 0.0 #0.05
+        i_range_z: 0.4
+        mass: 0.035 #0.032
+        massThrust: 132000
+  defaultWithIGain:
+    bigQuad: False
+    batteryVoltageWarning: 3.8  # V
+    batteryVoltateCritical: 3.7 # V
+    markerConfiguration: 0
+    dynamicsConfiguration: 0
+    firmwareParams:
+      ctrlMel:
         kp_xy: 0.4 #0.6 # p for position
         kd_xy: 0.2 # 0.35 # d for position
         ki_xy: 0.05
@@ -22,7 +48,7 @@ crazyflieTypes:
         kd_z: 0.4
         ki_z: 0.05
         i_range_z: 0.4
-        mass: 0.032
+        mass: 0.039 #0.042
         massThrust: 132000
   medium:
     bigQuad: True
