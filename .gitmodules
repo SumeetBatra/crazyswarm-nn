@@ -1,7 +1,7 @@
 [submodule "crazyflie-firmware"]
 	path = crazyflie-firmware
-	url = https://github.com/USC-ACTLab/crazyflie-firmware.git
-	branch = crazyswarm_master
+	url = https://github.com/TaoChenOSU/crazyflie-firmware-nn.git
+	branch = nn_controller
 [submodule "crazyflie-lib-python"]
 	path = crazyflie-lib-python
 	url = https://github.com/bitcraze/crazyflie-lib-python.git
