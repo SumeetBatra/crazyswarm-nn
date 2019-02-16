@@ -9,6 +9,7 @@
 
 #include <crazyflie_driver/Takeoff.h>
 #include <crazyflie_driver/Land.h>
+#include <crazyflie_driver/GoTo.h>
 
 namespace Xbox360Buttons {
 
@@ -47,6 +48,8 @@ public:
         m_serviceTakeoff = nh.serviceClient<crazyflie_driver::Takeoff>("/takeoff");
         ros::service::waitForService("/land");
         m_serviceLand = nh.serviceClient<crazyflie_driver::Land>("/land");
+        ros::service::waitForService("/cf2/go_to");
+        m_serviceGoTo = nh.serviceClient<crazyflie_driver::GoTo>("/cf2/go_to");
 
         ROS_INFO("Manager ready.");
     }
@@ -90,9 +93,21 @@ private:
     {
         crazyflie_driver::Takeoff srv;
         srv.request.groupMask = 0;
-        srv.request.height = 1.5;
+        srv.request.height = 1.0;
         srv.request.duration = ros::Duration(3.0);
         m_serviceTakeoff.call(srv);
+
+        ros::Duration(3.0).sleep();
+
+        crazyflie_driver::GoTo srv2;
+        srv2.request.groupMask = 0;
+        srv2.request.relative = false;
+        srv2.request.goal.x = 0;
+        srv2.request.goal.y = 0;
+        srv2.request.goal.z = 1.0;
+        srv2.request.yaw = 0.0;
+        srv2.request.duration = ros::Duration(2.0);
+        m_serviceGoTo.call(srv2);
     }
 
     void land()
@@ -110,6 +125,7 @@ private:
     ros::ServiceClient m_serviceEmergency;
     ros::ServiceClient m_serviceTakeoff;
     ros::ServiceClient m_serviceLand;
+    ros::ServiceClient m_serviceGoTo;
 };
 
 int main(int argc, char **argv)

@@ -17,7 +17,7 @@
       # genericLogTopic_log1_Variables: ["stabilizer.x", "ctrltarget.x", "vicon.x", "stabilizer.z", "ctrltarget.z", "vicon.z"]
       # genericLogTopic_log1_Variables: ["stateEstimate.roll", "ctrlMel.rolld"]
       # genericLogTopic_log1_Variables: ["ctrlStat.edist"]
-      genericLogTopic_log1_Variables: ["stateEstimate.roll", "ctrlMel.rolld", "control.roll", "stateEstimate.pitch", "ctrlMel.pitchd", "control.pitch"]
+      genericLogTopic_log1_Variables: ["motor.m1", "motor.m2", "motor.m3", "motor.m4"]
       firmwareParams: # for all (independent of type)
         commander:
           enHighLevel: 1
@@ -64,7 +64,7 @@
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find crazyswarm)/launch/test.rviz"/>
 
   <!-- <node pkg="rqt_plot" type="rqt_plot" name="rqt_plot_x" args="/cf2/log1/values[0]"/> -->
-  <!-- <node pkg="rqt_plot" type="rqt_plot" name="rqt_plot_roll" args="/cf45/log1/values[0] /cf45/log1/values[1] /cf45/log1/values[2]"/> -->
+  <!-- <node pkg="rqt_plot" type="rqt_plot" name="rqt_plot_roll" args="/cf1/log1/values[0] /cf1/log1/values[1] /cf1/log1/values[2]"/> -->
   <!-- <node pkg="rqt_plot" type="rqt_plot" name="rqt_plot_pitch" args="/cf45/log1/values[3] /cf45/log1/values[4] /cf45/log1/values[5]"/> -->
 
 </launch>

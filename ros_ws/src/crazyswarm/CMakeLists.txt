@@ -172,6 +172,15 @@ target_link_libraries(mocap_helper
   ${catkin_LIBRARIES}
 )
 
+## Declare a cpp executable
+add_executable(record_pose
+  src/record_pose.cpp
+)
+
+target_link_libraries(record_pose
+  ${catkin_LIBRARIES}
+)
+
 #############
 ## Install ##
 #############
