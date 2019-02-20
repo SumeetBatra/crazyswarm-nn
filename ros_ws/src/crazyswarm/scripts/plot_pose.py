@@ -97,7 +97,7 @@ if __name__ == "__main__":
   plt.figure(0)
 
   # X, Y, Z
-  plt.subplot(3, 1, 1)
+  plt.subplot(4, 1, 1)
   plt.plot(data[:,TIME], data[:,X], '-', label='X')
   plt.plot(data[:,TIME], data[:,Y], '-', label='Y')
   plt.plot(data[:,TIME], data[:,Z], '-', label='Z')
@@ -106,7 +106,7 @@ if __name__ == "__main__":
   plt.legend(loc=9, ncol=3, borderaxespad=0.)
 
   # roll, pitch, yaw
-  plt.subplot(3, 1, 2)
+  plt.subplot(4, 1, 2)
   plt.plot(data[:,TIME], np.degrees(roll), '-', label='roll')
   plt.plot(data[:,TIME], np.degrees(pitch), '-', label='pitch')
   plt.plot(data[:,TIME], np.degrees(yaw), '-', label='yaw')
@@ -114,8 +114,23 @@ if __name__ == "__main__":
   plt.ylabel('orientation [deg]')
   plt.legend(loc=9, ncol=3, borderaxespad=0.)
 
+  plt.subplot(4,1, 3)
+  dt = (data[:,TIME][-1] - data[:,TIME][0]) / roll.shape[-1]
+  freqs = np.fft.fftfreq(roll.shape[-1], dt)
+
+  freqRoll = np.fft.fft(np.degrees(roll))
+  freqPitch = np.fft.fft(np.degrees(pitch))
+
+  plt.plot(freqs, np.absolute(freqRoll), label='roll FFT')
+  plt.plot(freqs, np.absolute(freqPitch), label='pitch FFT')
+
+  plt.xlim(0, np.max(freqs))
+  plt.xlabel('Frequency [Hz]')
+  plt.ylabel('FFT')
+  plt.legend(loc=9, ncol=3, borderaxespad=0.)
+
   # errors
-  plt.subplot(3, 1, 3)
+  plt.subplot(4, 1, 4)
   # plt.plot(data[:,TIME], np.degrees(angleError), '-', label='quaternion error')
   # plt.plot(data[:,TIME], np.degrees(angleErrorNoYaw), '-', label='quaternion error (no yaw)')
   plt.plot(data[:,TIME], np.degrees(angleErrorR), '-', label='rotation matrix error')
