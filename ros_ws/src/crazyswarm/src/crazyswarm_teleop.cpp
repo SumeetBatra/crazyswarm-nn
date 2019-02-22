@@ -48,8 +48,8 @@ public:
         m_serviceTakeoff = nh.serviceClient<crazyflie_driver::Takeoff>("/takeoff");
         ros::service::waitForService("/land");
         m_serviceLand = nh.serviceClient<crazyflie_driver::Land>("/land");
-        ros::service::waitForService("/cf2/go_to");
-        m_serviceGoTo = nh.serviceClient<crazyflie_driver::GoTo>("/cf2/go_to");
+        ros::service::waitForService("/cf37/go_to");
+        m_serviceGoTo = nh.serviceClient<crazyflie_driver::GoTo>("/cf37/go_to");
 
         ROS_INFO("Manager ready.");
     }

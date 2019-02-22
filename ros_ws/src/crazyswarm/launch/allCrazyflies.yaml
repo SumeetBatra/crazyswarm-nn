@@ -11,3 +11,11 @@ crazyflies:
     channel: 80
     initialPosition: [-1.0, 0.0, 0.0]
     type: large
+  - id: 7
+    channel: 80
+    initialPosition: [-2.0, 0.0, 0.0]
+    type: parrot
+  - id: 5
+    channel: 110
+    initialPosition: [-3.0, 0.0, 0.0]
+    type: default

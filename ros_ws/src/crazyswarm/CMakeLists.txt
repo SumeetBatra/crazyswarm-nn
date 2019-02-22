@@ -1,6 +1,13 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(crazyswarm)
 
+# Enable C++11
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+
+## System dependencies are found with CMake's conventions
+find_package(Boost REQUIRED COMPONENTS program_options REQUIRED)
+find_package(PCL REQUIRED)
+
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
@@ -14,13 +21,6 @@ find_package(catkin REQUIRED COMPONENTS
   libmotioncapture
   tf_conversions
 )
-
-# Enable C++11
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
-
-## System dependencies are found with CMake's conventions
-# find_package(Boost REQUIRED COMPONENTS system)
-find_package(PCL REQUIRED)
 
 ## Uncomment this if the package has a setup.py. This macro ensures
 ## modules and global scripts declared therein get installed
@@ -179,6 +179,7 @@ add_executable(record_pose
 
 target_link_libraries(record_pose
   ${catkin_LIBRARIES}
+  -lboost_program_options
 )
 
 #############

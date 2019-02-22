@@ -2,6 +2,7 @@
 
 
 import sys
+import os
 import yaml
 import rospy
 import numpy as np
@@ -122,7 +123,10 @@ class CrazyflieServer:
         # rospy.wait_for_service("/update_params")
         # self.updateParamsService = rospy.ServiceProxy("/update_params", UpdateParams)
 
-        with open("../launch/crazyflies.yaml", 'r') as ymlfile:
+        folder = os.path.dirname(__file__)
+        file_name = os.path.join(folder, "../../launch/crazyflies.yaml")
+
+        with open(file_name, 'r') as ymlfile:
             cfg = yaml.load(ymlfile)
 
         self.tf = TransformListener()
