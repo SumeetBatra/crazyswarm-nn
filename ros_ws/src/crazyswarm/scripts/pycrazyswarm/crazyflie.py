@@ -114,8 +114,8 @@ class CrazyflieServer:
         self.takeoffService = rospy.ServiceProxy("/takeoff", Takeoff)
         rospy.wait_for_service("/land")
         self.landService = rospy.ServiceProxy("/land", Land)
-        # rospy.wait_for_service("/stop")
-        # self.stopService = rospy.ServiceProxy("/stop", Stop)
+        rospy.wait_for_service("/stop")
+        self.stopService = rospy.ServiceProxy("/stop", Stop)
         # rospy.wait_for_service("/go_to")
         # self.goToService = rospy.ServiceProxy("/go_to", GoTo)
         rospy.wait_for_service("/start_trajectory");
@@ -149,8 +149,8 @@ class CrazyflieServer:
     def land(self, targetHeight, duration, groupMask = 0):
         self.landService(groupMask, targetHeight, rospy.Duration.from_sec(duration))
 
-    # def stop(self, groupMask = 0):
-    #     self.stopService(groupMask)
+    def stop(self, groupMask = 0):
+        self.stopService(groupMask)
 
     # def goTo(self, goal, yaw, duration, groupMask = 0):
     #     gp = arrayToGeometryPoint(goal)

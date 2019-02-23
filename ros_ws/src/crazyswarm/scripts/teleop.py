@@ -18,24 +18,31 @@ ButtonStart  = 7
 lastButtonData = None
 controller = None
 
+def isPressed(button, data):
+    global lastButtonData
+
+    return data.buttons[button] == 1 and \
+            (lastButtonData is None or lastButtonData.buttons[button] == 0)
+
 
 def joyChanged(data):
     global lastButtonData
 
-    if lastButtonData:
-        if data.buttons[ButtonRed] == 1 and lastButtonData.buttons[ButtonRed] == 0:
-            emergency()
-        if data.buttons[ButtonStart] == 1 and lastButtonData.buttons[ButtonStart] == 0:
-            takeoff()
-        if data.buttons[ButtonBack] == 1 and lastButtonData.buttons[ButtonBack] == 0:
-            land()
-        if data.buttons[ButtonGreen] == 1 and lastButtonData.buttons[ButtonGreen] == 0:
-            switchController()
+    if isPressed(ButtonRed, data):
+        emergency()
+    if isPressed(ButtonStart, data):
+        takeoff()
+    if isPressed(ButtonBack, data):
+        land()
+    if isPressed(ButtonGreen, data):
+        switchController()
+
     lastButtonData = data
 
 
 def emergency():
-    allcfs.emergency()
+    # allcfs.emergency()
+    allcfs.stop()
 
 
 def takeoff():

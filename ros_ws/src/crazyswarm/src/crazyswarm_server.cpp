@@ -12,6 +12,7 @@
 #undef minor
 #include "crazyflie_driver/Takeoff.h"
 #include "crazyflie_driver/Land.h"
+#include "crazyflie_driver/Stop.h"
 #include "crazyflie_driver/GoTo.h"
 #include "crazyflie_driver/StartTrajectory.h"
 #include "crazyflie_driver/SetGroupMask.h"
@@ -797,6 +798,14 @@ public:
     // }
   }
 
+  void stop(uint8_t groupMask)
+  {
+    // for (size_t i = 0; i < 10; ++i) {
+      m_cfbc.stop(groupMask);
+      // std::this_thread::sleep_for(std::chrono::milliseconds(1));
+    // }
+  }
+
   void startTrajectory(
     uint8_t trajectoryId,
     float timescale,
@@ -1141,6 +1150,7 @@ public:
     m_serviceStartTrajectory = nh.advertiseService("start_trajectory", &CrazyflieServer::startTrajectory, this);
     m_serviceTakeoff = nh.advertiseService("takeoff", &CrazyflieServer::takeoff, this);
     m_serviceLand = nh.advertiseService("land", &CrazyflieServer::land, this);
+    m_serviceStop = nh.advertiseService("stop", &CrazyflieServer::stop, this);
 
     m_serviceNextPhase = nh.advertiseService("next_phase", &CrazyflieServer::nextPhase, this);
     // m_serviceUpdateParams = nh.advertiseService("update_params", &CrazyflieServer::updateParams, this);
@@ -1584,6 +1594,22 @@ private:
     return true;
   }
 
+  bool stop(
+    crazyflie_driver::Stop::Request& req,
+    crazyflie_driver::Stop::Response& res)
+  {
+    ROS_INFO("Stop!");
+
+    for (size_t i = 0; i < m_broadcastingNumRepeats; ++i) {
+      for (auto& group : m_groups) {
+        group->stop(req.groupMask);
+      }
+      std::this_thread::sleep_for(std::chrono::milliseconds(m_broadcastingDelayBetweenRepeatsMs));
+    }
+
+    return true;
+  }
+
   bool startTrajectory(
     crazyflie_driver::StartTrajectory::Request& req,
     crazyflie_driver::StartTrajectory::Response& res)
@@ -1705,6 +1731,7 @@ private:
   ros::ServiceServer m_serviceStartTrajectory;
   ros::ServiceServer m_serviceTakeoff;
   ros::ServiceServer m_serviceLand;
+  ros::ServiceServer m_serviceStop;
   ros::ServiceServer m_serviceNextPhase;
   ros::ServiceServer m_serviceUpdateParams;
 

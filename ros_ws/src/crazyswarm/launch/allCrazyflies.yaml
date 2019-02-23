@@ -2,7 +2,7 @@ crazyflies:
   - id: 37
     channel: 100
     initialPosition: [1.0, 0.0, 0.0]
-    type: default
+    type: defaultAverageGains #default
   - id: 2
     channel: 110
     initialPosition: [0.0, 0.0, 0.0]
@@ -14,7 +14,7 @@ crazyflies:
   - id: 7
     channel: 80
     initialPosition: [-2.0, 0.0, 0.0]
-    type: parrot
+    type: smallAverageGains #small
   - id: 5
     channel: 110
     initialPosition: [-3.0, 0.0, 0.0]
