@@ -31,16 +31,17 @@ if __name__ == "__main__":
     # allcfs = swarm.allcfs
 
     traj1 = uav_trajectory.Trajectory()
-    traj1.loadcsv("figure8.csv")
+    traj1.loadcsv("figure8.csv", swapxy=True)
 
-    TIMESCALE = 1.0
+    TIMESCALE = 1.0 #0.75
     for cf in allcfs.crazyflies:
         cf.uploadTrajectory(0, 0, traj1)
 
     allcfs.takeoff(targetHeight=1.0, duration=2.0)
     timeHelper.sleep(2.5)
     for cf in allcfs.crazyflies:
-        pos = np.array(cf.initialPosition) + np.array([0, 0, 1.0])
+        # pos = np.array(cf.initialPosition) + np.array([0, 0, 1.0])
+        pos = np.array([0, 0, 1.0])
         cf.goTo(pos, 0, 2.0)
     timeHelper.sleep(2.5)
 

@@ -89,9 +89,12 @@ class Trajectory:
     self.polynomials = None
     self.duration = None
 
-  def loadcsv(self, filename):
+  def loadcsv(self, filename, swapxy = False):
     data = np.loadtxt(filename, delimiter=",", skiprows=1, usecols=range(33))
-    self.polynomials = [Polynomial4D(row[0], row[1:9], row[9:17], row[17:25], row[25:33]) for row in data]
+    if not swapxy:
+      self.polynomials = [Polynomial4D(row[0], row[1:9], row[9:17], row[17:25], row[25:33]) for row in data]
+    else:
+      self.polynomials = [Polynomial4D(row[0], row[9:17], row[1:9], row[17:25], row[25:33]) for row in data]
     self.duration = np.sum(data[:,0])
 
   def eval(self, t):

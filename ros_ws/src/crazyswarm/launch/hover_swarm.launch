@@ -21,6 +21,8 @@
       # genericLogTopic_log1_Variables: ["ctrlNN.in15", "ctrlNN.in16", "ctrlNN.in17", "ctrlNN.out0"]
       # genericLogTopic_log1_Variables: ["motor.m1", "motor.m2", "motor.m3", "motor.m4"]
       genericLogTopic_log1_Variables: ["ctrltarget.x", "ctrltarget.y", "ctrltarget.z", "stateEstimate.x", "stateEstimate.y", "stateEstimate.z"]
+      # genericLogTopic_log1_Variables: ["motor.m1", "ctrltarget.mode_z", "chlDbg.numCmdsRcvd", "chlDbg.state", "commander.getCount"]
+      # "ctrlNN.out0","control.directThrust", "control.ratio0"]
       firmwareParams: # for all (independent of type)
         commander:
           enHighLevel: 1
@@ -52,6 +54,8 @@
       force_no_cache: False
       enable_parameters: True
       enable_logging: True
+      broadcasting_num_repeats: 30 # 15
+      broadcasting_delay_between_repeats_ms: 1 # 1
     </rosparam>
   </node>
 

@@ -26,11 +26,18 @@ if __name__ == "__main__":
   plt.figure(0)
 
   # X, Y, Z
-  plt.subplot(1, 1, 1)
+  plt.subplot(2, 1, 1)
   plt.plot(current[:,0], current[:,1], '-', label='current')
   plt.plot(target[:,0], target[:,1], '-', label='target')
   plt.xlabel('X [m]')
   plt.ylabel('Y [m]')
+  plt.legend(loc=9, ncol=3, borderaxespad=0.)
+
+  plt.subplot(2, 1, 2)
+  plt.plot(current[:,2], '-', label='current')
+  plt.plot(target[:,2], '-', label='target')
+  plt.xlabel('dataset/time')
+  plt.ylabel('Z [m]')
   plt.legend(loc=9, ncol=3, borderaxespad=0.)
 
 

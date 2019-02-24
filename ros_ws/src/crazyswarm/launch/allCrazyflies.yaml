@@ -4,7 +4,7 @@ crazyflies:
     initialPosition: [1.0, 0.0, 0.0]
     type: defaultAverageGains #default
   - id: 2
-    channel: 110
+    channel: 80
     initialPosition: [0.0, 0.0, 0.0]
     type: medium
   - id: 1
