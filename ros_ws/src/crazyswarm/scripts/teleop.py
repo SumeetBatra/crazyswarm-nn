@@ -36,22 +36,29 @@ def joyChanged(data):
         land()
     if isPressed(ButtonGreen, data):
         switchController()
+    if isPressed(ButtonBlue, data):
+        goto()
 
     lastButtonData = data
 
 
 def emergency():
-    # allcfs.emergency()
     allcfs.stop()
+    allcfs.emergency()
 
 
 def takeoff():
     allcfs.takeoff(targetHeight=1.0, duration=3.0)
-    timeHelper.sleep(3.0)
-    for cf in allcfs.crazyflies:
-        # pos = np.array(cf.initialPosition) + np.array([0, 0, 1.0])
-        pos = np.array([0, 0, 1.0])
-        cf.goTo(pos, 0, 2.0)
+    # timeHelper.sleep(3.0)
+    # for cf in allcfs.crazyflies:
+    #     # pos = np.array(cf.initialPosition) + np.array([0, 0, 1.0])
+    #     pos = np.array([0, 0, 1.0])
+    #     cf.goTo(pos, 0, 2.0)
+
+
+def goto():
+    pos = np.array([0, 0, 1.0])
+    allcfs.crazyflies[0].goTo(pos, 0, 2.0)
 
 
 def land():

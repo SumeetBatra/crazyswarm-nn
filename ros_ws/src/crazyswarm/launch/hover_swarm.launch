@@ -21,11 +21,16 @@
       # genericLogTopic_log1_Variables: ["ctrlNN.in15", "ctrlNN.in16", "ctrlNN.in17", "ctrlNN.out0"]
       # genericLogTopic_log1_Variables: ["motor.m1", "motor.m2", "motor.m3", "motor.m4"]
       genericLogTopic_log1_Variables: ["ctrltarget.x", "ctrltarget.y", "ctrltarget.z", "stateEstimate.x", "stateEstimate.y", "stateEstimate.z"]
-      # genericLogTopic_log1_Variables: ["motor.m1", "ctrltarget.mode_z", "chlDbg.numCmdsRcvd", "chlDbg.state", "commander.getCount"]
+      # genericLogTopic_log1_Variables: ["chlDbg.numCmdsRcvd", "chlDbg.state", "chlDbg.sz"]
       # "ctrlNN.out0","control.directThrust", "control.ratio0"]
+      # genericLogTopic_log1_Variables: ["motor.m1", "motor.m2", "motor.m3", "motor.m4"]
       firmwareParams: # for all (independent of type)
         commander:
           enHighLevel: 1
+        ctrlNN:
+          max_thrust: 0.6 # 1.0 # 0.7
+          rel_vel: 1
+          rel_omega: 1
         stabilizer:
           estimator: 3 # 1: complementary, 2: kalman, 3: kalmanUSC (only crazyswarm firmware)
           controller: 3 # 1: PID, 2: mellinger, 3: NN
@@ -54,7 +59,7 @@
       force_no_cache: False
       enable_parameters: True
       enable_logging: True
-      broadcasting_num_repeats: 30 # 15
+      broadcasting_num_repeats: 50 # 15
       broadcasting_delay_between_repeats_ms: 1 # 1
     </rosparam>
   </node>
@@ -73,7 +78,8 @@
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find crazyswarm)/launch/test.rviz"/>
 
   <!-- <node pkg="rqt_plot" type="rqt_plot" name="rqt_plot_x" args="/cf2/log1/values[0]"/> -->
-  <!-- <node pkg="rqt_plot" type="rqt_plot" name="rqt_plot_roll" args="/cf37/log1/values[0] /cf37/log1/values[1] /cf37/log1/values[2] /cf37/log1/values[3]"/> -->
+  <!-- <node pkg="rqt_plot" type="rqt_plot" name="rqt_plot_roll" args="/cf2/log1/values[0] /cf2/log1/values[1] /cf2/log1/values[2] /cf2/log1/values[3]"/> -->
+  <!-- <node pkg="rqt_plot" type="rqt_plot" name="rqt_plot_roll2" args="/cf2/log1/values[3] /cf2/log1/values[4] /cf2/log1/values[5]"/> -->
   <!-- <node pkg="rqt_plot" type="rqt_plot" name="rqt_plot_pitch" args="/cf45/log1/values[3] /cf45/log1/values[4] /cf45/log1/values[5]"/> -->
 
 </launch>

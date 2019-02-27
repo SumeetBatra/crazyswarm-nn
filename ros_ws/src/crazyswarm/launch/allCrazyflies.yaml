@@ -2,20 +2,21 @@ crazyflies:
   - id: 37
     channel: 100
     initialPosition: [1.0, 0.0, 0.0]
-    type: defaultAverageGains #default
-  - id: 2
-    channel: 80
-    initialPosition: [0.0, 0.0, 0.0]
-    type: medium
-  - id: 1
-    channel: 80
-    initialPosition: [-1.0, 0.0, 0.0]
-    type: large
+    type: defaultAverageGains
   - id: 7
     channel: 80
     initialPosition: [-2.0, 0.0, 0.0]
-    type: smallAverageGains #small
-  - id: 5
-    channel: 110
-    initialPosition: [-3.0, 0.0, 0.0]
-    type: default
+    type: smallAverageGains # one of: small, smallNoIGain, smallAverageGains
+  - id: 2
+    channel: 80
+    initialPosition: [0.0, 0.0, 0.0]
+    type: medium #one of: medium, mediumNoIGain, mediumAverageGains
+  - id: 1
+    channel: 80
+    initialPosition: [-1.0, 0.0, 0.0]
+    type: largeNoIGain # one of large, largeNoIGain, largeAverageGains
+
+  # - id: 5
+  #   channel: 110
+  #   initialPosition: [-3.0, 0.0, 0.0]
+  #   type: default
