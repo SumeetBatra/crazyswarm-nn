@@ -16,6 +16,7 @@
 #include "crazyflie_driver/GoTo.h"
 #include "crazyflie_driver/StartTrajectory.h"
 #include "crazyflie_driver/SetGroupMask.h"
+#include "crazyflie_driver/UploadNN.h"
 #include "std_srvs/Empty.h"
 #include "geometry_msgs/Twist.h"
 #include "sensor_msgs/Imu.h"
@@ -184,6 +185,7 @@ public:
     , m_serviceLand()
     , m_serviceGoTo()
     , m_serviceSetGroupMask()
+    , m_serviceUploadNN()
     , m_logBlocks(log_blocks)
     , m_forceNoCache(force_no_cache)
     , m_initializedPosition(false)
@@ -195,6 +197,7 @@ public:
     m_serviceLand = n.advertiseService(tf_prefix + "/land", &CrazyflieROS::land, this);
     m_serviceGoTo = n.advertiseService(tf_prefix + "/go_to", &CrazyflieROS::goTo, this);
     m_serviceSetGroupMask = n.advertiseService(tf_prefix + "/set_group_mask", &CrazyflieROS::setGroupMask, this);
+    m_serviceUploadNN = n.advertiseService(tf_prefix + "/upload_nn", &CrazyflieROS::uploadNN, this);
 
     if (m_enableLogging) {
       m_logFile.open("logcf" + std::to_string(id) + ".csv");
@@ -215,7 +218,7 @@ public:
   {
     m_logBlocks.clear();
     m_logBlocksGeneric.clear();
-    m_cf.sysoff();
+    // m_cf.sysoff();
     m_logFile.close();
   }
 
@@ -410,6 +413,29 @@ public:
     return true;
   }
 
+  bool uploadNN(
+    crazyflie_driver::UploadNN::Request& req,
+    crazyflie_driver::UploadNN::Response& res)
+  {
+    ROS_INFO("[%s] Upload NN", m_frame.c_str());
+
+    std::ifstream file(req.filename, std::ios::binary | std::ios::ate);
+    std::ifstream::pos_type pos = file.tellg();
+
+    std::vector<uint8_t> nnDesc(pos);
+    file.seekg(0, std::ios::beg);
+    file.read(reinterpret_cast<char*>(nnDesc.data()), pos);
+
+    auto start = std::chrono::system_clock::now();
+    m_cf.uploadNN(nnDesc);
+    auto end = std::chrono::system_clock::now();
+    std::chrono::duration<double> elapsedSeconds = end-start;
+
+    ROS_INFO("[%s] Uploaded NN (took %f s)", m_frame.c_str(), elapsedSeconds.count());
+
+    return true;
+  }
+
   void run(
     ros::CallbackQueue& queue)
   {
@@ -589,6 +615,7 @@ private:
   ros::ServiceServer m_serviceLand;
   ros::ServiceServer m_serviceGoTo;
   ros::ServiceServer m_serviceSetGroupMask;
+  ros::ServiceServer m_serviceUploadNN;
 
   std::vector<crazyflie_driver::LogBlock> m_logBlocks;
   std::vector<ros::Publisher> m_pubLogDataGeneric;

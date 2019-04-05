@@ -90,6 +90,9 @@ if __name__ == "__main__":
     controller = allcfs.crazyflies[0].getParam("stabilizer/controller")
     rospy.loginfo("Controller set to: " + str(controller))
 
+    for cf in allcfs.crazyflies:
+        cf.uploadNN("/home/whoenig/quadlearn/Crazyflie-firmware-code-generation/bin_file_gen/build/baseline.bin")
+
     rospy.spin()
 
     # allcfs.takeoff(targetHeight=Z, duration=1.0+Z)
