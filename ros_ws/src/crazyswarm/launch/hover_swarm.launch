@@ -31,6 +31,7 @@
           max_thrust: 0.6 # 1.0 # 0.7
           rel_vel: 1
           rel_omega: 1
+          freq: 500
         stabilizer:
           estimator: 3 # 1: complementary, 2: kalman, 3: kalmanUSC (only crazyswarm firmware)
           controller: 3 # 1: PID, 2: mellinger, 3: NN
@@ -40,13 +41,13 @@
           solidGreen: 0 # if set to solid color
           solidRed: 0 # if set to solid color
           headlightEnable: 0
-        #ekf:
+        ekf:
         #  ext_var_xy: 1.5e-7 # 1e-7 # 1.5e-7
         #  ext_var_vel: 2e-4 # 2e-4
         #  ext_var_q: 4.5e-3 # 2e-3 # 4.5e-3
         #  gyro_var_xy: 0.2e-2 # 0.2e-4
         #  gyro_var_z: 0.2e-2 # 0.2e-4
-        #  acc_var_xyz: 2.4e-3 # 2.4e-3
+           acc_var_xyz: 2.4e-1 # 2.4e-3
       # tracking
       motion_capture_type: "vicon" # one of vicon,optitrack
       object_tracking_type: "motionCapture" # one of motionCapture,libobjecttracker

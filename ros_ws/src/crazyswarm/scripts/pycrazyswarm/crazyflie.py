@@ -54,6 +54,8 @@ class Crazyflie:
         # self.startTrajectoryService = rospy.ServiceProxy(prefix + "/start_trajectory", StartTrajectory)
         rospy.wait_for_service(prefix + "/update_params")
         self.updateParamsService = rospy.ServiceProxy(prefix + "/update_params", UpdateParams)
+        rospy.wait_for_service(prefix + "/upload_nn")
+        self.uploadNNService = rospy.ServiceProxy(prefix + "/upload_nn", UploadNN)
         self.prefix = prefix
 
     def setGroupMask(self, groupMask):
@@ -103,6 +105,9 @@ class Crazyflie:
         for name, value in params.iteritems():
             rospy.set_param(self.prefix + "/" + name, value)
         self.updateParamsService(params.keys())
+
+    def uploadNN(self, fileName):
+        self.uploadNNService(fileName)
 
 
 class CrazyflieServer:
