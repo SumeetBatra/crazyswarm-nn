@@ -1,7 +1,3 @@
-[submodule "crazyflie-firmware"]
-	path = crazyflie-firmware
-	url = https://github.com/TaoChenOSU/crazyflie-firmware-nn.git
-	branch = nn_controller
 [submodule "crazyflie-lib-python"]
 	path = crazyflie-lib-python
 	url = https://github.com/bitcraze/crazyflie-lib-python.git
@@ -22,6 +18,10 @@
 [submodule "ros_ws/src/externalDependencies/libmotioncapture"]
 	path = ros_ws/src/externalDependencies/libmotioncapture
 	url = https://github.com/USC-ACTLab/libmotioncapture.git
+[submodule "crazyflie-firmware-nn"]
+	path = crazyflie-firmware-nn
+	url = https://github.com/TaoChenOSU/crazyflie-firmware-nn.git
+	branch = nn_controller
 [submodule "ros_ws/src/crazyflie_ros"]
 	path = ros_ws/src/crazyflie_ros
 	url = https://github.com/TaoChenOSU/crazyflie_ros.git

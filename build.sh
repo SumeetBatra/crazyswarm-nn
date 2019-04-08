@@ -21,7 +21,7 @@ make
 cd $ROOT
 
 # build stm firmware
-cd crazyflie-firmware
+cd crazyflie-firmware-nn
 git submodule init
 git submodule update
 make
