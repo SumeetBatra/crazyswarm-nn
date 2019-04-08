@@ -57,8 +57,11 @@ def takeoff():
 
 
 def goto():
-    pos = np.array([0, 0, 1.0])
-    allcfs.crazyflies[0].goTo(pos, 0, 2.0)
+    # pos = np.array([0, 0, 1.0])
+    if 37 in allcfs.crazyfliesById:
+        allcfs.crazyfliesById[37].goTo(np.array([1, -1, 1.0]), 0, 2.0)
+    if 2 in allcfs.crazyfliesById:
+        allcfs.crazyfliesById[2].goTo(np.array([1, 1, 1.0]), 0, 2.0)
 
 
 def land():
