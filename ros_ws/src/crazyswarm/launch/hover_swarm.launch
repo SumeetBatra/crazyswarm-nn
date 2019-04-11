@@ -28,9 +28,10 @@
         commander:
           enHighLevel: 1
         ctrlNN:
-          max_thrust: 0.6 # 1.0 # 0.7
+          max_thrust: 1.0 # 1.0 # 0.7
           rel_vel: 1
           rel_omega: 1
+          rel_xyz: 1
           freq: 500
         stabilizer:
           estimator: 3 # 1: complementary, 2: kalman, 3: kalmanUSC (only crazyswarm firmware)

@@ -28,7 +28,7 @@ def main():
             subprocess.call(["../crazyflie-clients-python/bin/cfloader -w " + uri + " flash ../crazyflie2-nrf-firmware/cf2_nrf.bin nrf51-fw"], shell=True)
         if args.stm32:
             print("Flash STM32 FW to {}".format(uri))
-            subprocess.call(["../crazyflie-clients-python/bin/cfloader -w " + uri + " flash ../crazyflie-firmware/cf2.bin stm32-fw"], shell=True)
+            subprocess.call(["../crazyflie-clients-python/bin/cfloader -w " + uri + " flash ../crazyflie-firmware-nn/cf2.bin stm32-fw"], shell=True)
 
 
 if __name__ == "__main__":
