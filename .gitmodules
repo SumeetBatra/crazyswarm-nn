@@ -20,8 +20,8 @@
 	url = https://github.com/USC-ACTLab/libmotioncapture.git
 [submodule "crazyflie-firmware-nn"]
 	path = crazyflie-firmware-nn
-	url = https://github.com/TaoChenOSU/crazyflie-firmware-nn.git
+	url = https://github.com/SumeetBatra/crazyflie-firmware-nn.git
 	branch = nn_controller_upload
 [submodule "ros_ws/src/crazyflie_ros"]
 	path = ros_ws/src/crazyflie_ros
-	url = https://github.com/TaoChenOSU/crazyflie_ros.git
+	url = https://github.com/SumeetBatra/crazyflie_ros.git
